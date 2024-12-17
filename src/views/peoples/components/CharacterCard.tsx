@@ -53,11 +53,11 @@ function CharacterCard(props: { data: People }) {
         id="character-details-R5-D4"
         className="grid grid-cols-2 gap-y-1 text-sm text-gray-700"
       >
-        <div className="flex items-center gap-x-2">
+        {/* <div className="flex items-center gap-x-2">
           <MdPublic size="20" color="blue" />
           <p className="font-bold text-gray-900">Home World:</p>
         </div>
-        <p className="font-semibold text-gray-800">{data.homeworld}</p>
+        <p className="font-semibold text-gray-800">{data.homeworld}</p> */}
         <div className="flex items-center gap-x-2">
           <MdCake size="20" color="blue" />
           <p className="font-bold text-gray-900">Birth Year:</p>
