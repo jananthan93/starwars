@@ -25,8 +25,20 @@ function HomePage() {
         </div>
       </main>
       <nav className="flex justify-between px-4 py-4">
-        <Button>Previous</Button>
-        <Button>Next</Button>
+        <Button
+          key="prev"
+          disabled={previous != null ? false : true}
+          onClick={() => dispatch(getAllPeoples(previous))}
+        >
+          Previous
+        </Button>
+        <Button
+          key="next"
+          disabled={next != null ? false : true}
+          onClick={() => dispatch(getAllPeoples(next))}
+        >
+          Next
+        </Button>
       </nav>
     </>
   );

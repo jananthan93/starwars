@@ -1,11 +1,7 @@
-import axios, {
-  AxiosResponse,
-  AxiosRequestConfig,
-  RawAxiosRequestHeaders,
-} from 'axios';
-
+import axios, { AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+export const baseURL = 'https://swapi.py4e.com/api/';
 const client = axios.create({
-  baseURL: 'https://swapi.py4e.com/api/',
+  baseURL,
 });
 
 const config: AxiosRequestConfig = {
