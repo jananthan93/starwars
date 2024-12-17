@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import Button from '../../components/ui/Button';
-import { getPeopleDetail, likePeople, PeopleState } from './store';
+import {
+  getPeopleDetail,
+  likePeople,
+  PeopleState,
+  unLikePeople,
+} from './store';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { useParams } from 'react-router';
 
@@ -28,7 +33,9 @@ function PeopleDetail() {
                   Add to Favourite
                 </Button>
               ) : (
-                <Button onClick={() => dispatch(likePeople(peopleDetail?.id))}>
+                <Button
+                  onClick={() => dispatch(unLikePeople(peopleDetail?.id))}
+                >
                   {' '}
                   Remove From Favourites
                 </Button>
