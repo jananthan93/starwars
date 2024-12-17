@@ -1,10 +1,8 @@
-import { axiosService } from './axios.service';
-
-export async function apiGetPeoples<T>(page: number) {
+import { axiosService, baseURL } from './axios.service';
+export async function apiGetPeoples<T>(pageUrl: string | undefined | null) {
   return new Promise((resolve, reject) => {
-    let url = page > 1 ? `people/?page=${page}` : `people`;
     axiosService
-      .get(url)
+      .get(pageUrl != null ? pageUrl : 'people')
       .then((response) => {
         resolve(response);
       })
@@ -17,7 +15,7 @@ export async function apiGetPeoples<T>(page: number) {
 export function apiGetPeopleDetail(id: string) {
   return new Promise((resolve, reject) => {
     axiosService
-      .get(`people/${id}`)
+      .get(`${baseURL}/people/${id}`)
       .then((response) => {
         resolve(response);
       })
