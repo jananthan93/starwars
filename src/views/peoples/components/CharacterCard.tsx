@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoMdHeartEmpty } from 'react-icons/io';
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import {
   MdCake,
   MdFace2,
@@ -9,12 +9,17 @@ import {
   MdTransgender,
 } from 'react-icons/md';
 import Button from '../../../components/ui/Button';
-import { People } from '../store';
+import { likePeople, People, PeopleState, unLikePeople } from '../store';
+import { Link } from 'react-router';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 
 function CharacterCard(props: { data: People }) {
+  const dispatch = useAppDispatch();
   const { data } = props;
+  const { favPeoples } = useAppSelector((state) => state.people) as PeopleState;
   return (
     <div
+      key={`card-${data.name}`}
       aria-live="polite"
       aria-labelledby="character-name-R5-D4"
       aria-describedby="character-details-R5-D4"
@@ -28,14 +33,11 @@ function CharacterCard(props: { data: People }) {
           {data.name}
         </h2>
         <div className="flex justify-between space-x-4">
-          <button
-            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium size-14 css-18q7h3i"
-            tabIndex={0}
-            type="button"
-            aria-label="Add to favorites"
-          >
-            <IoMdHeartEmpty />
-          </button>
+          {favPeoples.includes(data.id) ? (
+            <IoMdHeart onClick={() => dispatch(unLikePeople(data.id))} />
+          ) : (
+            <IoMdHeartEmpty onClick={() => dispatch(likePeople(data.id))} />
+          )}
         </div>
       </div>
       <div
@@ -74,9 +76,9 @@ function CharacterCard(props: { data: People }) {
         <p className="font-semibold text-gray-800">{data.mass}</p>
       </div>
 
-      <Button className="mt-4" title="View Details">
-        View Details
-      </Button>
+      <Link to={`/peoples/${data.id}`}>
+        <Button className="mt-4">View Details</Button>
+      </Link>
     </div>
   );
 }
