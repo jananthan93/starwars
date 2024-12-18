@@ -1,4 +1,3 @@
-import React from 'react';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import {
   MdCake,
@@ -13,9 +12,9 @@ import { likePeople, People, PeopleState, unLikePeople } from '../store';
 import { Link } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
 
-function CharacterCard(props: { data: People }) {
+function CharacterCard(props: { data: People,isFavView:boolean }) {
   const dispatch = useAppDispatch();
-  const { data } = props;
+  const { data,isFavView } = props;
   const { favPeoples } = useAppSelector((state) => state.people) as PeopleState;
   return (
     <div
@@ -84,11 +83,15 @@ function CharacterCard(props: { data: People }) {
         </div>
         <p className="font-semibold text-gray-800">{data.mass}</p>
       </div>
-      <div className="flex float-right">
-        <Link to={`/peoples/${data.id}`}>
-          <Button className="mt-4">View Details</Button>
+      <div className="flex">
+        <Link to={`/peoples/${data.id}`} className='w-full'>
+          <Button className="mt-4 w-full" >View Details</Button>
         </Link>
       </div>
+      {isFavView &&<div className="flex">
+          <Button className="mt-4 w-full bg-red-800 text-cyan-50 hover:text-slate-950" >Edit</Button>
+          <Button className="mt-4 w-full bg-slate-800 text-cyan-50 hover:text-slate-950" onClick={() => dispatch(unLikePeople(data.id))}>Remove</Button>
+      </div>}
     </div>
   );
 }
