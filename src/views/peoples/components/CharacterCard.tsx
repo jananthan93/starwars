@@ -14,7 +14,7 @@ import { Link } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { axiosService } from '../../../services/axios.service';
 
-function CharacterCard(props: { data: People }) {
+function CharacterCard(props: { data: People; isFavView: boolean }) {
   const dispatch = useAppDispatch();
   const { data } = props;
   const { favPeoples } = useAppSelector((state) => state.people) as PeopleState;
