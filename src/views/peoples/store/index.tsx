@@ -53,6 +53,7 @@ export const getAllPeoples = createAsyncThunk(
     return (await apiGetPeoples(page)) as GetPeoplesResponse;
   }
 );
+
 export const getPeopleDetail = createAsyncThunk(
   SLICE_NAME + '/getPeopleDetail',
   async (id: string) => {
@@ -81,7 +82,7 @@ const initialState: PeopleState = {
   previous: null,
   next: null,
 };
-function removeItemOnce(arr: string[], value) {
+function removeItemOnce(arr: string[], value: any) {
   var index = arr.indexOf(value);
   if (index > -1) {
     arr.splice(index, 1);

@@ -1,5 +1,5 @@
 import { axiosService, baseURL } from './axios.service';
-export async function apiGetPeoples<T>(pageUrl: string | undefined | null) {
+export async function apiGetPeoples(pageUrl: string | undefined | null) {
   return new Promise((resolve, reject) => {
     axiosService
       .get(pageUrl != null ? pageUrl : 'people')
@@ -7,7 +7,7 @@ export async function apiGetPeoples<T>(pageUrl: string | undefined | null) {
         resolve(response);
       })
       .catch((error) => {
-        console.log(error);
+        reject(error);
       });
   });
 }
